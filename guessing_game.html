@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My first website</title>
+</head>
+<body>
+    <h1>Guessing game, woot.</h1>
+    <script type="text/javascript">
+    var playing = true;
+    var number = Math.floor(Math.random() * 10);
+    var guesses = 0;
+    var maxGuesses = 3;
+
+    while (playing && guesses <= maxGuesses) {
+        var guess = prompt("Guess number");
+        if (guess != number) {
+            guesses++;
+            alert("Wrong! Try again, foo.");
+            if (guesses == maxGuesses) {
+                alert("Sorry, you did not guess the answer correctly. Better luck next time.")
+                break;
+            };
+        } else {
+            alert("Your number is " + number + "! You won!");
+            break;
+        };
+    };
+
+    </script>
+</body>
+</html>
