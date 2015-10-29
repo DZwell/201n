@@ -2,33 +2,41 @@
 
     var playing = true;
     var points = 0;
+    var question1 = "Is the Big Lebowski the greatest film ever made?";
+    var question2 = "Are dogs better than cats?"
+    var question3 = "Yes or no?";
 
-    while (playing) {
-        var question1 = prompt("Do I have siblings?");
-        question1 = question1.toLowerCase();
-        if (question1 === 'yes' || question1 === 'y') {
-            alert('Correct!');
-            points++;
-        } else {
-            alert('Incorrect');
+
+    function startGame(question, answer) {
+        var guess = prompt(question);
+        guess = guess.toLowerCase();
+
+        if (answer == 'yes') {
+            if (guess == 'yes' || guess == 'y') {
+                var el = document.getElementById('response');
+                var elText = document.createTextNode('Correct!');
+                el.appendChild(elText);
+            } else if (guess == 'no' || guess == 'n') {
+                var el = document.getElementById('response');
+                var elText = document.createTextNode('Sorry, your opinion is wrong.');
+                el.appendChild(elText);
+            }
+
+        } else if (answer == 'no') {
+            if (guess =='no' || guess == 'n') {
+                var el = document.getElementById('response');
+                var elText = document.createTextNode('Correct!');
+                el.appendChild(elText);
+            } else if(guess == 'yes' || guess == 'y') {
+                var el = document.getElementById('response');
+                var elText = document.createTextNode('Sorry, your opinion is wrong.');
+                el.appendChild(elText);
+            }
         };
-        var question2 = prompt("Am I from Seattle?");
-        question2 = question2.toLowerCase();
-        if (question2 === 'no' || question2 === 'n') {
-            alert('Correct!');
-            points++;
-        } else {
-            alert('Incorrect');
-        };
-        var question3 = prompt("Is the Big Lebowski the greatest film ever made?");
-        question3 = question3.toLowerCase();
-        if (question3 === 'yes' || question3 === 'y') {
-            alert('Correct!');
-            points++;
-        } else {
-            alert('Sorry, your opinion is wrong.');
-        };
-        alert('You scored ' + points + ' out of 3');
-        break;
     };
+
+startGame(question1, 'yes');
+startGame(question2, 'no');
+startGame(question3, 'yes');
+
 })();
