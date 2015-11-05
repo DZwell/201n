@@ -21,11 +21,14 @@ var DonutShop = function(location, stats) {
             total += this.hourlyTotals[i];
         };
         this.dailyTotals.push(total);
-    }
+    };
 };
+// Gives row unique ID so it can be deleted \\
+var rowCounter = 0;
 
 DonutShop.prototype.render = function() {
     var tr = document.createElement('tr');
+    tr.id = rowCounter++;
     var td = document.createElement('td');
     td.innerHTML = this.location;
     tr.appendChild(td);
@@ -41,6 +44,7 @@ DonutShop.prototype.render = function() {
     tr.appendChild(td);
     body = document.getElementById('body').appendChild(tr);
 };
+
 
 var downtown = new DonutShop('Downtown', {minCustPH: 8, maxCustPH: 43, avgDonutsPerCust: 4.5});
 var capitolHill = new DonutShop('Capitol Hill', {minCustPH: 4, maxCustPH: 37, avgDonutsPerCust: 2});
@@ -68,5 +72,3 @@ ballard.hourlyDonuts();
 ballard.dailyDonuts();
 ballard.render();
 
-
-window.DonutShop = DonutShop;

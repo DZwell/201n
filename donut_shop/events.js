@@ -1,16 +1,12 @@
-var DonutShop = window.DonutShop;
-var td = document.createElement('td');
-var tr = document.createElement('tr');
-var body = document.getElementById('body');
 var clearButton = document.getElementById('clear');
 var submitButton = document.getElementById('submit');
 var userForm = document.getElementById('userForm');
-var locationForm = document.getElementById('location');
 
-// Clears User Form \\
 clearButton.addEventListener('click', function(event) {
-    userForm.texContent = '';
     event.preventDefault();
+    rowCounter--;
+    var lastRow = document.getElementById(rowCounter);
+    lastRow.remove();
 });
 
 userForm.addEventListener('submit', function(event) {
