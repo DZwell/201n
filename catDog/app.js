@@ -14,8 +14,11 @@ $(function() {
 
     pushImages();
 
-    randomIndex1 = Math.floor(Math.random() * 26);
-    randomIndex2 = Math.floor(Math.random() * 26);
+    var randomIndex1 = Math.floor(Math.random() * 26);
+    var randomIndex2 = Math.floor(Math.random() * 26);
+    if (randomIndex1 == randomIndex2) {
+        randomIndex1 = Math.floor(Math.random() * 26);
+    }
     img1 = images[randomIndex1];
     img2 = images[randomIndex2];
     console.log(img1, img2);
