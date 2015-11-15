@@ -6,6 +6,7 @@ var DonutShop = function(location, stats) {
     this.avgDonutsPerCust = stats.avgDonutsPerCust;
     this.hourlyTotals = [];
     this.dailyTotals = [];
+    this.propertiesArray = [];
     this.randCustomers = function(minCustPH, maxCustPH) {
         return Math.floor(Math.random() * (this.maxCustPH - this.minCustPH)) + this.minCustPH;
     };
@@ -42,6 +43,10 @@ DonutShop.prototype.render = function() {
     td = document.createElement('td');
     td.innerHTML = this.dailyTotals;
     tr.appendChild(td);
+    button = document.createElement('input');
+    button.setAttribute('type', 'radio');
+    button.setAttribute('name', 'checked');
+    tr.appendChild(button);
     body = document.getElementById('body').appendChild(tr);
 };
 
@@ -55,6 +60,9 @@ var ballard = new DonutShop('Ballard', {minCustPH: 8, maxCustPH: 58, avgDonutsPe
 downtown.hourlyDonuts();
 downtown.dailyDonuts();
 downtown.render();
+downtown.propertiesArray.push(downtown);
+console.log(downtown.propertiesArray[0].maxCustPH);
+
 
 capitolHill.hourlyDonuts();
 capitolHill.dailyDonuts();
