@@ -6,8 +6,7 @@ var DonutShop = function(location, stats) {
     this.avgDonutsPerCust = stats.avgDonutsPerCust;
     this.hourlyTotals = [];
     this.dailyTotals = [];
-    this.propertiesArray = [];
-    this.randCustomers = function(minCustPH, maxCustPH) {
+    this.randCustomers = function() {
         return Math.floor(Math.random() * (this.maxCustPH - this.minCustPH)) + this.minCustPH;
     };
     this.hourlyDonuts = function() {
@@ -43,12 +42,15 @@ DonutShop.prototype.render = function() {
     td = document.createElement('td');
     td.innerHTML = this.dailyTotals;
     tr.appendChild(td);
-    button = document.createElement('input');
-    button.setAttribute('type', 'radio');
-    button.setAttribute('name', 'checked');
-    tr.appendChild(button);
-    body = document.getElementById('body').appendChild(tr);
+    document.getElementById('body').appendChild(tr);
 };
+
+DonutShop.prototype.arrayPush = function(location) {
+    this.hourlyDonuts();
+    this.dailyDonuts();
+    propertiesArray.push(location);
+    this.render();
+}
 
 
 var downtown = new DonutShop('Downtown', {minCustPH: 8, maxCustPH: 43, avgDonutsPerCust: 4.5});
@@ -57,26 +59,15 @@ var southLakeUnion = new DonutShop('South Lake Union', {minCustPH: 9, maxCustPH:
 var wedgewood = new DonutShop('Wedgewood', {minCustPH: 2, maxCustPH: 28, avgDonutsPerCust: 1.25});
 var ballard = new DonutShop('Ballard', {minCustPH: 8, maxCustPH: 58, avgDonutsPerCust: 3.75});
 
-downtown.hourlyDonuts();
-downtown.dailyDonuts();
-downtown.render();
-downtown.propertiesArray.push(downtown);
-console.log(downtown.propertiesArray[0].maxCustPH);
+var propertiesArray = [];
+downtown.arrayPush(downtown);
+capitolHill.arrayPush(capitolHill);
+southLakeUnion.arrayPush(southLakeUnion);
+wedgewood.arrayPush(wedgewood);
+ballard.arrayPush(ballard);
 
 
-capitolHill.hourlyDonuts();
-capitolHill.dailyDonuts();
-capitolHill.render();
 
-southLakeUnion.hourlyDonuts();
-southLakeUnion.dailyDonuts();
-southLakeUnion.render();
 
-wedgewood.hourlyDonuts();
-wedgewood.dailyDonuts();
-wedgewood.render();
 
-ballard.hourlyDonuts();
-ballard.dailyDonuts();
-ballard.render();
 
