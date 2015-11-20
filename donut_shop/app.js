@@ -25,6 +25,7 @@ var DonutShop = function(location, stats) {
 };
 // Gives row unique ID so it can be deleted \\
 var rowCounter = 0;
+var propertiesArray = [];
 
 DonutShop.prototype.render = function() {
     var tr = document.createElement('tr');
@@ -49,8 +50,29 @@ DonutShop.prototype.arrayPush = function(location) {
     this.hourlyDonuts();
     this.dailyDonuts();
     propertiesArray.push(location);
+    populateDropDown(location);
     this.render();
 }
+
+function populateDropDown(store) {
+    var stores = document.getElementById('existing');
+    var store = store.location;
+    var el = document.createElement('option');
+    el.value = store;
+    el.innerHTML = store;
+    stores.appendChild(el);
+};
+
+function update() {
+    for (var i = 0; i < propertiesArray.length; i++) {
+        if (propertiesArray[i].location == updateLocation.value) {
+            propertiesArray[i].minCustPH = event.target.min.value;
+            propertiesArray[i].maxCustPH = event.target.max.value;
+            propertiesArray[i].avgDonutsPerCust = event.target.avg.value;
+            propertiesArray[i].location.arrayPush(propertiesArray[i].location);
+        };
+    };
+};
 
 
 var downtown = new DonutShop('Downtown', {minCustPH: 8, maxCustPH: 43, avgDonutsPerCust: 4.5});
@@ -59,13 +81,11 @@ var southLakeUnion = new DonutShop('South Lake Union', {minCustPH: 9, maxCustPH:
 var wedgewood = new DonutShop('Wedgewood', {minCustPH: 2, maxCustPH: 28, avgDonutsPerCust: 1.25});
 var ballard = new DonutShop('Ballard', {minCustPH: 8, maxCustPH: 58, avgDonutsPerCust: 3.75});
 
-var propertiesArray = [];
 downtown.arrayPush(downtown);
 capitolHill.arrayPush(capitolHill);
 southLakeUnion.arrayPush(southLakeUnion);
 wedgewood.arrayPush(wedgewood);
 ballard.arrayPush(ballard);
-
 
 
 
