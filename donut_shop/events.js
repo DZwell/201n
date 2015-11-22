@@ -30,6 +30,9 @@ userForm.addEventListener('submit', function(event) {
     event.preventDefault();
     var newShop = new DonutShop(event.target.location.value, {minCustPH: event.target.min.value, maxCustPH: event.target.max.value, avgDonutsPerCust: event.target.avg.value});
 
+    newShop.newShopChart(newShop.dailyTotals, newShop.location);
+    myDoughnutChart.update();
+
     if (dropDown.value != 'blank') {
         newShop.location = dropDown.options[dropDown.selectedIndex].value;
     };
