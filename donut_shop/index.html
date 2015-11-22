@@ -28,7 +28,7 @@
         <tbody id="body"></tbody>
     </table>
     <form id="userForm">Create or Update a New Location Here:<br>
-        <select id="existing" name="shops">
+        <select id="existing" name="shops" onchange="disableLocationField()">
             <option value="blank">Update a location</option>
         </select><br>
         <label for="location">Location Name: </label>

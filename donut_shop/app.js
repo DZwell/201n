@@ -1,3 +1,6 @@
+// Gives row unique ID so it can be deleted \\
+var rowCounter = 0;
+var propertiesArray = [];
 
 var DonutShop = function(location, stats) {
     this.location = location;
@@ -23,9 +26,6 @@ var DonutShop = function(location, stats) {
         this.dailyTotals.push(total);
     };
 };
-// Gives row unique ID so it can be deleted \\
-var rowCounter = 0;
-var propertiesArray = [];
 
 DonutShop.prototype.render = function() {
     var tr = document.createElement('tr');
@@ -65,12 +65,11 @@ function populateDropDown(store) {
 
 function update() {
     for (var i = 0; i < propertiesArray.length; i++) {
-        if (propertiesArray[i].location == updateLocation.value) {
-            propertiesArray[i].minCustPH = event.target.min.value;
-            propertiesArray[i].maxCustPH = event.target.max.value;
-            propertiesArray[i].avgDonutsPerCust = event.target.avg.value;
-            propertiesArray[i].location.arrayPush(propertiesArray[i].location);
-        };
+        propertiesArray[i].location = updateLocation;
+        propertiesArray[i].minCustPH = event.target.min.value;
+        propertiesArray[i].maxCustPH = event.target.max.value;
+        propertiesArray[i].avgDonutsPerCust = event.target.avg.value;
+        // propertiesArray[i].location.arrayPush(propertiesArray[i].location);
     };
 };
 
@@ -86,8 +85,6 @@ capitolHill.arrayPush(capitolHill);
 southLakeUnion.arrayPush(southLakeUnion);
 wedgewood.arrayPush(wedgewood);
 ballard.arrayPush(ballard);
-
-
 
 
 
