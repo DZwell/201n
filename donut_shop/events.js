@@ -3,8 +3,6 @@ var userForm = document.getElementById('userForm');
 var storeNameForm = document.getElementById('location');
 var table = document.getElementById('donutTable');
 var dropDown = document.getElementById('existing')
-var updateLocation = dropDown.options[dropDown.selectedIndex].value
-
 
 function disableLocationField() {
     if (dropDown.value != "blank") {
@@ -30,17 +28,25 @@ userForm.addEventListener('submit', function(event) {
     event.preventDefault();
     var newShop = new DonutShop(event.target.location.value, {minCustPH: event.target.min.value, maxCustPH: event.target.max.value, avgDonutsPerCust: event.target.avg.value});
 
-    if (dropDown.value != 'blank') {
-        newShop.location = dropDown.options[dropDown.selectedIndex].value;
+    if (dropDown.value != 'blank'){
+        for (var i = 0; i < propertiesArray.length; i++) {
+            if (dropDown.value == propertiesArray[i].location) {
+                newShop.location = dropDown.options[dropDown.selectedIndex].value;
+                newShop.update(newShop);
+            }
+        };
+    }
+
+    if (dropDown.value == 'blank'){
+        event.target.location.value = null;
+        event.target.min.value = null;
+        event.target.max.value = null;
+        event.target.avg.value = null;
+
+        newShop.handleNewLocation(newShop);
+        resetDropDown();
     };
 
-    event.target.location.value = null;
-    event.target.min.value = null;
-    event.target.max.value = null;
-    event.target.avg.value = null;
-
-    newShop.arrayPush(newShop);
-    resetDropDown();
 });
 
 
