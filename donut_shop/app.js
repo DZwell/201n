@@ -72,6 +72,7 @@ DonutShop.prototype.update = function(location) {
             propertiesArray[i].render();
         }
     }
+    resetdropDown();
 };
 
 function populateDropDown(store) {
