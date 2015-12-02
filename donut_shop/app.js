@@ -60,19 +60,24 @@ DonutShop.prototype.update = function(location) {
         myNode.removeChild(myNode.firstChild);
     }
     for (var i = 0; i < propertiesArray.length; i++) {
-        if (propertiesArray[i].location != dropDown.options[dropDown.selectedIndex].value) {
+        // if (propertiesArray[i].location != dropDown.options[dropDown.selectedIndex].value) {
+        //     console.log(dropDown.options[dropDown.selectedIndex].value);
+        //     // propertiesArray[i].hourlyDonuts();
+        //     // propertiesArray[i].dailyDonuts();
+        //     propertiesArray[i].render();
+        // }
+        if (propertiesArray[i].location == dropDown.options[dropDown.selectedIndex].value) {
+            console.log('array: ' + propertiesArray[i].location)
+            console.log('dropDown: ' + dropDown.options[dropDown.selectedIndex].value);
+            propertiesArray.splice(propertiesArray[i], 1, location);
             // propertiesArray[i].hourlyDonuts();
             // propertiesArray[i].dailyDonuts();
-            propertiesArray[i].render();
-        }
-        if (propertiesArray[i].location == dropDown.options[dropDown.selectedIndex].value) {
-            propertiesArray.splice(propertiesArray[i], 1, location);
-            propertiesArray[i].hourlyDonuts();
-            propertiesArray[i].dailyDonuts();
-            propertiesArray[i].render();
+            // propertiesArray[i].render();
         }
     }
-    resetdropDown();
+    console.log(propertiesArray);
+    dropDown.lastChild.remove();
+    resetDropDown();
 };
 
 function populateDropDown(store) {
